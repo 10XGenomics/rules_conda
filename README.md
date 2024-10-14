@@ -79,7 +79,7 @@ conda_package_lock(
 )
 ```
 
-See the [documentaion][`conda_package_lock`] for that rule
+See the [documentation][`conda_package_lock`] for that rule
 for additional options you might want to set for it.
 
 `bazel run` that target to generate the `conda_env.bzl` file, and then add
@@ -201,7 +201,7 @@ You can add glob patterns like that for files or directories into the
 in which case those files will be skipped.
 
 If you wish, you can also use `exclude` to get rid of unnecessary content like
-man pages or test suites, which might otherwise unnecssarily bloat your build.
+man pages or test suites, which might otherwise unnecessarily bloat your build.
 
 ### Patches
 
@@ -262,7 +262,7 @@ They've worked very well for us,
 and we don't forsee making major changes any time soon.
 So, yes
 (though this should not be construed as contradicting the license terms
-which make clear that we provide no warantee).
+which make clear that we provide no warranty).
 
 [^2]: The main differences between this public version of the rules and
       the internal version are due to divergence between our internal fork of
@@ -332,7 +332,7 @@ Most of the time you only need to interact with `@conda_env`.
 
 On the roadmap.
 
-There's nothing fundemental preventing it,
+There's nothing fundamental preventing it,
 but it hasn't been a priority for us to work on it.
 Parts of it, such as  work on other platforms, including
 `conda_package_lock`,
@@ -342,7 +342,7 @@ due to a few hard-coded assumptions here and there.
 
 Unfortunately, cross compilation doesn't really work at the moment due to
 (ironically) the need to support `noarch` packages.
-We need to be able to exectue the python executable in order to ask it
+We need to be able to execute the python executable in order to ask it
 the correct path for `lib/pythonX.Y` to prepend for those packages.
 We could avoid this if we were willing to just assume that the answer is
 always `lib/pythonX.Y` where `X.Y` is always the major/minor version number,
@@ -355,7 +355,7 @@ First of all, conda is not exclusively a Python ecosystem.
 
 Some aspects of putting together an environment are simply too complicated
 to do purely in starlark.
-`go` has several desireable properties for performing those steps:
+`go` has several desirable properties for performing those steps:
 
 - Go is more portable than python.  No, really.  For repository rules,
   you can't use a build target, so you're basically stuck using the system
@@ -374,7 +374,7 @@ to do purely in starlark.
   to generate the BUILD files is going to be far less than the it saves
   by running a compiled executable rather than an interpreted script.
 - The canonical tool for formatting BUILD files, `buildifier`, is written in go.
-  The libraries backing it can be used to generate build files programatically.
+  The libraries backing it can be used to generate build files programmatically.
 - The bazel rules for go are very mature.
   The SDK repository rule knows how to use the host go,
   or download the SDK from the internet,

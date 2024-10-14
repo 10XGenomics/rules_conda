@@ -217,17 +217,17 @@ _new_conda_package_git_repository_attrs = {
             "The default is the repository name.",
     ),
     "exported_files": attr.string_list(
-        doc = "Does nothing.  Retained for backwards compability.",
+        doc = "Does nothing.  Retained for backwards compatibility.",
     ),
     "version": attr.string(
         doc = "The version of the package to report in the `index.json`. " +
               "This is completely optional and does not affect SBOM metadata " +
-              "computed by bazel. It is retained for backwards compatiblity.",
+              "computed by bazel. It is retained for backwards compatibility.",
     ),
     "license": attr.string(
         doc = "The package license to report in the `index.json`. " +
               "This is completely optional and does not affect SBOM metadata " +
-              "computed by bazel. It is retained for backwards compatiblity.",
+              "computed by bazel. It is retained for backwards compatibility.",
     ),
 }
 

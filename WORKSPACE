@@ -19,7 +19,7 @@ conda_environment()
 
 #####################################################################
 # Dependencies below here are only needed when developing within this
-# repo, not required for using the rules.  Specifially, they're
+# repo, not required for using the rules.  Specifically, they're
 # required for building the documentation.
 #####################################################################
 
