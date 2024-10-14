@@ -1,0 +1,19 @@
+
+py_test(
+    name = "blacken",
+    srcs = ["blacken.py"],
+    data = ["//:pyproject.toml"],
+    deps = ["@conda_env//:black"],
+)
+
+cc_test(
+    name = "eigen_example",
+    srcs = ["eigen.cc"],
+    deps = ["@conda_env//:eigen"],
+)
+
+cc_test(
+    name = "ssl_example",
+    srcs = ["ssl.cc"],
+    deps = ["@conda_env//:openssl"],
+)

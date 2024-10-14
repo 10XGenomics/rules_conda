@@ -1,0 +1,48 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+load("@rules_license//rules:license.bzl", "license")
+
+package(
+    default_applicable_licenses = [":license"],
+)
+
+license(
+    name = "license",
+    package_name = "rules_conda for bazel",
+    copyright_notice = "Copyright (c) 2019-2024 10X Genomics, Inc.",
+    license_kinds = [
+        "@rules_license//licenses/spdx:MIT",
+    ],
+    license_text = "//:LICENSE",
+    visibility = ["//:__subpackages__"],
+)
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "known_licenses.go",
+        "licenses.go",
+        "normalize_license.go",
+        "spdx.go",
+    ],
+    importpath = "github.com/10XGenomics/rules_conda/licensing",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//buildutil:go_default_library",
+        "@com_github_bazelbuild_buildtools//build:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "licenses_test.go",
+        "normalize_license_test.go",
+    ],
+    embed = [":go_default_library"],
+)
+
+py_library(
+    name = "generate_spdx",
+    srcs = ["generate_spdx.py"],
+    visibility = ["//visibility:public"],
+)

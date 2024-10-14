@@ -1,0 +1,35 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+      - name: Configure bazel PATH
+        run: echo "common --repo_env=PATH=$PATH" >> ~/.bazelrc
+      - name: Get bazel info
+        run: |
+          echo "bazel_bin=$(bazel info bazel-bin)" >> $GITHUB_ENV
+      - name: Cache bazel external repository build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ${{ env.bazel_bin }}/external
+          key: bazel-build-cache-${{hashFiles('deps.bzl', 'WORKSPACE')}}
+          restore-keys: |
+            bazel-build-cache-
+      - name: Run tests
+        run: bazel test --color=yes //...

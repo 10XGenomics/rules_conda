@@ -1,0 +1,5 @@
+black>=24.3.0,<25
+coverage>=6.3
+eigen
+python>=3.8.8
+shellcheck>=0.9

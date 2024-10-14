@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+export CONDA_OVERRIDE_GLIBC="{glibc_version}"
+exec '{generator}' -conda "{conda}" \
+        -requirements "{requirements}" \
+        -build '{build}' \
+        -o '{target}' \
+        -chan '{channels}' \
+        -extra '{extra}' \
+        -exclude '{exclude}' \
+        -arch '{architecture}'

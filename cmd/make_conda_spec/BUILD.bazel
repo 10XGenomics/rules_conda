@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "main.go",
+        "writer.go",
+    ] + select({
+        "@io_bazel_rules_go//go/platform:linux": ["make_cmd_linux.go"],
+        "//conditions:default": ["make_cmd_generic.go"],
+    }),
+    importpath = "github.com/10XGenomics/rules_conda/cmd/make_conda_spec",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//buildutil:go_default_library",
+        "@com_github_bazelbuild_buildtools//build:go_default_library",
+    ],
+)
+
+go_binary(
+    name = "make_conda_spec",
+    embed = [":go_default_library"],
+    gc_linkopts = [
+        "-s",
+        "-w",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    [
+        "main.go",
+        "writer.go",
+    ],
+    visibility = ["//visibility:private"],
+)

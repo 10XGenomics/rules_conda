@@ -1,0 +1,11 @@
+bin/
+*.pyc
+*.pyo
+/bazel-*
+*.swp
+.vscode/
+
+# We're not yet ready for bzlmod; in the mean time this annoys generate_build
+# if building with bzlmod enabled.
+/MODULE.bazel
+/MODULE.bazel.lock

@@ -1,0 +1,65 @@
+# Non-SPDX licenses with which we are familiar.
+
+load("@rules_license//rules:license_kind.bzl", "license_kind")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+license_kind(
+    name = "Adobe",
+    conditions = ["notice"],
+    url = "",
+)
+
+license_kind(
+    name = "Biopython",
+    conditions = ["notice"],
+    url = "https://github.com/biopython/biopython/blob/master/LICENSE.rst",
+)
+
+license_kind(
+    name = "Commercial",
+    conditions = ["commercial"],
+    url = "",
+)
+
+license_kind(
+    name = "HDF5",
+    conditions = ["notice"],
+    url = "https://github.com/HDFGroup/hdf5/blob/develop/COPYING",
+)
+
+license_kind(
+    name = "PIL",
+    conditions = ["notice"],
+    url = "https://github.com/python-pillow/Pillow/blob/main/LICENSE",
+)
+
+alias(
+    name = "PSF-based",
+    actual = "@rules_license//licenses/spdx:PSF-2.0",
+)
+
+license_kind(
+    name = "ProprietaryIntel",
+    conditions = ["notice"],
+    url = "https://software.intel.com/sites/landingpage/pintool/intel-simplified-software-license.txt",
+)
+
+license_kind(
+    name = "cuda-toolkit",
+    conditions = ["notice"],
+    url = "https://docs.nvidia.com/cuda/eula/index.html#cuda-toolkit-supplement-license-agreement",
+)
+
+alias(
+    name = "cuDNN",
+    actual = "cuda-toolkit",
+)
+
+license_kind(
+    name = "UFL-1.0",
+    conditions = ["notice"],
+    url = "https://ubuntu.com/legal/font-licence",
+)

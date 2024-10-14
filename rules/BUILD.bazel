@@ -1,0 +1,112 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(
+    default_applicable_licenses = ["//licensing:license"],
+    default_visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "all_rules",
+    srcs = glob(["*.bzl"]),
+    visibility = ["//visibility:public"],
+)
+
+bzl_library(
+    name = "conda_environment",
+    srcs = ["conda_environment.bzl"],
+    deps = [
+        "@bazel_skylib//lib:sets",
+        "@bazel_skylib//lib:versions",
+    ],
+)
+
+bzl_library(
+    name = "multiarch_http_file",
+    srcs = ["multiarch_http_file.bzl"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@bazel_skylib//lib:paths",
+        "@bazel_skylib//lib:types",
+    ],
+)
+
+bzl_library(
+    name = "conda_package_lock",
+    srcs = ["conda_package_lock.bzl"],
+    deps = [":util.bzl"],
+)
+
+bzl_library(
+    name = "conda_package_repository",
+    srcs = ["conda_package_repository.bzl"],
+    deps = [
+        ":bazel_tools_tools",
+    ],
+)
+
+bzl_library(
+    name = "new_conda_package_git_repository",
+    srcs = ["new_conda_package_git_repository.bzl"],
+    deps = [
+        ":bazel_tools_tools",
+        "//rules/private:new_conda_package_repository_utils",
+    ],
+)
+
+bzl_library(
+    name = "new_conda_package_http_repository",
+    srcs = ["new_conda_package_http_repository.bzl"],
+    deps = [
+        ":bazel_tools_tools",
+        "//rules/private:new_conda_package_repository_utils",
+    ],
+)
+
+bzl_library(
+    name = "util",
+    srcs = ["util.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+# for files which include bazel_tools
+bzl_library(
+    name = "bazel_tools_tools",
+    srcs = ["@bazel_tools//tools:bzl_srcs"],
+    visibility = [":__subpackages__"],
+)
+
+bzl_library(
+    name = "rules_bins_repository",
+    srcs = ["rules_bins_repository.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+bzl_library(
+    name = "symlink_provider",
+    srcs = ["symlink_provider.bzl"],
+    visibility = ["//visibility:public"],
+)
+
+bzl_library(
+    name = "conda_install_rules",
+    srcs = ["conda_install_rules.bzl"],
+    deps = [
+        ":providers",
+        ":symlink_provider",
+        ":util",
+    ],
+)
+
+bzl_library(
+    name = "conda_manifest",
+    srcs = ["conda_manifest.bzl"],
+    deps = [
+        ":providers",
+        ":symlink_provider",
+    ],
+)
+
+bzl_library(
+    name = "providers",
+    srcs = ["providers.bzl"],
+)

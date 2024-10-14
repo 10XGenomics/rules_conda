@@ -1,0 +1,9 @@
+package(
+    default_applicable_licenses = ["//licensing:license"],
+)
+
+filegroup(
+    name = "conda_package_lock_generator",
+    srcs = ["conda_package_lock_generator.bash.template"],
+    visibility = ["//visibility:public"],
+)

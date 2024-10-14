@@ -1,0 +1,19 @@
+common --incompatible_disallow_empty_glob
+common --noenable_bzlmod
+
+common --experimental_profile_additional_tasks=fetch
+common --experimental_profile_additional_tasks=critical_path
+common --experimental_profile_additional_tasks=critical_path_component
+
+# Recommended for hermetic testing.
+build --action_env=PYTHONNOUSERSITE=1
+build --test_env=PYTHONNOUSERSITE=1
+build --incompatible_default_to_explicit_init_py
+build --cxxopt=-std=c++17
+test --test_output=errors
+
+coverage --strategy=CoverageReport=local
+coverage --build_runfile_links
+coverage --combined_report=lcov
+coverage --instrumentation_filter=^//
+coverage --instrument_test_targets

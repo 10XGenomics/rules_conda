@@ -1,0 +1,56 @@
+load("@io_bazel_stardoc//stardoc:stardoc.bzl", "stardoc")
+
+package(
+    default_applicable_licenses = ["//licensing:license"],
+    default_visibility = ["//visibility:public"],
+)
+
+stardoc(
+    name = "conda_environment_docs",
+    out = "conda_environment.md",
+    input = "//rules:conda_environment.bzl",
+    symbol_names = [
+        "conda_environment_repository",
+    ],
+    deps = ["//rules:conda_environment"],
+)
+
+stardoc(
+    name = "conda_package_repository_docs",
+    out = "conda_package_repository.md",
+    input = "//rules:conda_package_repository.bzl",
+    symbol_names = [
+        "conda_package_repository",
+    ],
+    deps = ["//rules:conda_package_repository"],
+)
+
+stardoc(
+    name = "new_conda_package_http_repository_docs",
+    out = "new_conda_package_http_repository.md",
+    input = "//rules:new_conda_package_http_repository.bzl",
+    symbol_names = [
+        "new_conda_package_http_repository",
+    ],
+    deps = ["//rules:new_conda_package_http_repository"],
+)
+
+stardoc(
+    name = "conda_manifest_docs",
+    out = "conda_manifest.md",
+    input = "//rules:conda_manifest.bzl",
+    symbol_names = [
+        "conda_manifest",
+        "conda_files",
+        "conda_deps",
+    ],
+    deps = ["//rules:conda_manifest"],
+)
+
+stardoc(
+    name = "conda_package_lock_docs",
+    out = "conda_package_lock.md",
+    input = "//rules:conda_package_lock.bzl",
+    symbol_names = ["conda_package_lock"],
+    deps = ["//rules:conda_package_lock"],
+)

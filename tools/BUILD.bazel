@@ -1,0 +1,25 @@
+package(
+    default_applicable_licenses = ["//licensing:license"],
+)
+
+# Aliases so we don't need to download the jdk until it's requested.
+alias(
+    name = "remotejdk17",
+    actual = select({
+        "@bazel_tools//src/conditions:darwin": "@remotejdk17_macos//:jdk",
+        "@bazel_tools//src/conditions:linux": "@remotejdk17_linux//:jdk",
+        "@bazel_tools//src/conditions:windows": "@remotejdk17_win//:jdk",
+    }),
+    visibility = ["//visibility:public"],
+)
+
+toolchain(
+    name = "java_toolchain_jdk17",
+    exec_compatible_with = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    toolchain = ":remotejdk17",
+    toolchain_type = "@bazel_tools//tools/jdk:runtime_toolchain_type",
+    visibility = ["//visibility:public"],
+)

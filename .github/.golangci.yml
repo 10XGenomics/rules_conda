@@ -1,0 +1,63 @@
+# This file contains configuration values to use in the github action.
+# For local development you may or may not want somewhat different
+# options.
+
+# options for analysis running
+run:
+  tests: true
+  modules-download-mode: readonly
+  allow-parallel-runners: true
+
+output:
+
+  # print lines of code with issue, default is true
+  print-issued-lines: true
+
+  # print linter name in the end of issue text, default is true
+  print-linter-name: true
+
+  # make issues output unique by line, default is true
+  uniq-by-line: true
+
+# all available settings of specific linters
+linters-settings:
+  errcheck:
+    check-type-assertions: false
+    check-blank: false
+    exclude-functions:
+      - io.Copy(*bytes.Buffer)
+      - io.Copy(os.Stderr)
+      - (bytes.Buffer).Write
+      - (bytes.Buffer).WriteByte
+      - (bytes.Buffer).WriteRune
+      - (bytes.Buffer).WriteString
+      - fmt.Fprintln(os.Stderr)
+
+  gofmt:
+    # simplify code: gofmt with `-s` option
+    simplify: true
+
+  lll:
+    line-length: 100
+    tab-width: 4
+  misspell:
+    locale: US
+
+linters:
+  enable:
+    - bodyclose
+    - godot
+    - gofmt
+    - govet
+    - ineffassign
+    - lll
+    - mirror
+    - misspell
+    - prealloc
+    - tenv
+    - tparallel
+    - unconvert
+    - unparam
+    - unused
+    - usestdlibvars
+    - whitespace

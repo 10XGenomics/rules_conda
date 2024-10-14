@@ -1,0 +1,2 @@
+#!/bin/sh
+# This shouldn't be detected as a header file.

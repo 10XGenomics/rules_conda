@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "go_default_library",
+    srcs = [
+        "files.go",
+        "metadata.go",
+        "package_tarball.go",
+        "packages.go",
+        "python_package.go",
+    ],
+    importpath = "github.com/10XGenomics/rules_conda/conda",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//buildutil:go_default_library",
+        "//licensing:go_default_library",
+        "@com_github_bazelbuild_buildtools//build:go_default_library",
+    ],
+)
+
+go_test(
+    name = "go_default_test",
+    srcs = [
+        "files_test.go",
+        "packages_test.go",
+    ],
+    data = [
+        "testdata/cpp_header",
+        "testdata/script_file",
+    ],
+    embed = [":go_default_library"],
+)

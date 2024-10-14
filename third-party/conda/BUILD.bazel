@@ -1,0 +1,40 @@
+load(
+    "@bazel_skylib//:bzl_library.bzl",
+    "bzl_library",
+)
+load("@com_github_10XGenomics_rules_conda//rules:conda_package_lock.bzl", "conda_package_lock")
+
+package(
+    default_applicable_licenses = ["//licensing:license"],
+)
+
+exports_files(
+    ["conda_spec.bzl"],
+    visibility = ["//:__pkg__"],
+)
+
+conda_package_lock(
+    name = "generate_package_lock",
+    channels = [
+        "conda-forge",
+    ],
+    exclude = [
+        "_openmp_mutex",
+        "ld_impl_linux-64",
+        "libgfortran",
+        "libgomp",
+        "lzo",
+        "importlib_metadata",
+        "readline",
+        "typing-extensions",
+    ],
+    requirements = "conda_requirements.txt",
+    target = "conda_env.bzl",
+    visibility = ["//visibility:public"],
+)
+
+bzl_library(
+    name = "conda_env",
+    srcs = ["conda_env.bzl"],
+    visibility = ["//visibility:public"],
+)

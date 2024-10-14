@@ -1,0 +1,21 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+# gazelle:prefix github.com/10XGenomics/rules_conda
+
+exports_files(
+    [
+        "LICENSE",
+        "pyproject.toml",
+    ],
+    visibility = ["//:__subpackages__"],
+)
+
+# Alias to surface the conda package lock generation at the root.
+alias(
+    name = "generate_package_lock",
+    actual = "//third-party/conda:generate_package_lock",
+)
