@@ -141,7 +141,7 @@ def _generate_build_content(
             fail("multiple packages named " + pkg, attr = "conda_packages")
         if pkg == name:
             fail(
-                "package name must not match repostiory name " + pkg,
+                "package name must not match repository name " + pkg,
                 attr = "conda_packages",
             )
         auto_alias = _default_alias(pkg)
@@ -159,7 +159,7 @@ def _generate_build_content(
     for alias, actual in aliases.items():
         if alias == name:
             fail(
-                "alias must not match repostiory name " + pkg,
+                "alias must not match repository name " + pkg,
                 attr = "conda_packages",
             )
         if alias in all_packages:
