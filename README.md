@@ -41,7 +41,7 @@ load(
     "second_level_dependencies",
 )
 
-# Set up toolchains for go, rust, etc.
+# Transitive dependencies and repository helper.
 second_level_dependencies()
 
 
