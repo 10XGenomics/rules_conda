@@ -125,8 +125,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_libgcc",
         base_urls = ["https://conda.anaconda.org/conda-forge/linux-64"],
-        dist_name = "libgcc-14.1.0-h77fa898_1",
-        sha256 = "10fa74b69266a2be7b96db881e18fa62cfa03082b65231e8d652e897c4b335a3",
+        dist_name = "libgcc-14.2.0-h77fa898_1",
+        sha256 = "53eb8a79365e58849e7b1a068d31f4f9e718dc938d6f2c03e960345739a03569",
         archive_type = "conda",
         license_file = "share/licenses/gcc-libs/RUNTIME.LIBRARY.EXCEPTION",
         exclude_deps = ["_openmp_mutex"],
@@ -136,8 +136,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_libgcc_ng",
         base_urls = ["https://conda.anaconda.org/conda-forge/linux-64"],
-        dist_name = "libgcc-ng-14.1.0-h69a702a_1",
-        sha256 = "b91f7021e14c3d5c840fbf0dc75370d6e1f7c7ff4482220940eaafb9c64613b7",
+        dist_name = "libgcc-ng-14.2.0-h69a702a_1",
+        sha256 = "3a76969c80e9af8b6e7a55090088bc41da4cffcde9e2c71b17f44d37b7cb87f7",
         exclude = [
             "lib/libgomp.so*",
             "lib/lib*san.so*",
@@ -170,8 +170,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_libstdcxx",
         base_urls = ["https://conda.anaconda.org/conda-forge/linux-64"],
-        dist_name = "libstdcxx-14.1.0-hc0a3c3a_1",
-        sha256 = "44decb3d23abacf1c6dd59f3c152a7101b7ca565b4ef8872804ceaedcc53a9cd",
+        dist_name = "libstdcxx-14.2.0-hc0a3c3a_1",
+        sha256 = "4661af0eb9bdcbb5fb33e5d0023b001ad4be828fccdcc56500059d56f9869462",
         archive_type = "conda",
         license_file = "share/licenses/libstdc++/RUNTIME.LIBRARY.EXCEPTION",
         conda_repo = name,
@@ -179,8 +179,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_libstdcxx_ng",
         base_urls = ["https://conda.anaconda.org/conda-forge/linux-64"],
-        dist_name = "libstdcxx-ng-14.1.0-h4852527_1",
-        sha256 = "a2dc44f97290740cc187bfe94ce543e6eb3c2ea8964d99f189a1d8c97b419b8c",
+        dist_name = "libstdcxx-ng-14.2.0-h4852527_1",
+        sha256 = "25bb30b827d4f6d6f0522cc0579e431695503822f144043b93c50237017fffd8",
         archive_type = "conda",
         conda_repo = name,
     )
