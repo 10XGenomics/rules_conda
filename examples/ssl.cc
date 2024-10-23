@@ -1,6 +1,6 @@
 // Demonstrate linking against a conda package, in this case OpenSSL.
 
-#include <openssl/sha.h>
+#include <openssl/evp.h>
 
 #include <iostream>
 #include <string_view>
@@ -9,15 +9,16 @@ using std::string_view;
 
 int main() {
   const string_view message = "Hello World";
-  unsigned char hash[SHA256_DIGEST_LENGTH];
+  unsigned char hash[EVP_MAX_MD_SIZE];
+  size_t hashLen;
 
-  SHA256_CTX sha256;
-  SHA256_Init(&sha256);
-  SHA256_Update(&sha256, message.data(), message.size());
-  SHA256_Final(hash, &sha256);
+  if (!EVP_Q_digest(nullptr, "SHA256", nullptr, message.data(),
+                    message.length(), hash, &hashLen)) {
+    return 1;
+  }
 
   std::cout << "SHA-256 Hash of 'Hello World': ";
-  for (int i = 0; i < SHA256_DIGEST_LENGTH; i++) {
+  for (int i = 0; i < hashLen; i++) {
     printf("%02x", hash[i]);
   }
   std::cout << std::endl;
