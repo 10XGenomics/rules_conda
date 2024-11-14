@@ -11,6 +11,16 @@ load(
     "use_netrc",
 )
 
+def _is_empty(ctx):
+    """Returns true if the metadata indicates that this is an empty archive."""
+    files_list = ctx.path("info/files")
+    if files_list.exists:
+        return not ctx.read(files_list).strip()
+    paths_json = ctx.path("info/paths.json")
+    if not paths_json.exists:
+        fail("Archive contained neither info/files nor info/paths.json")
+    return not json.decode(ctx.read(paths_json)).get("paths")
+
 def _conda_package_repository_impl(ctx):
     # Get this path here, because it might trigger a restart of the fetch,
     # which would be better to have happen before we download anything.
@@ -53,7 +63,7 @@ def _conda_package_repository_impl(ctx):
         ctx.delete("info-{}.tar.zst".format(ctx.attr.dist_name))
 
         # Do not attempt to untar empty archives.
-        if ctx.read("info/files").strip():
+        if not _is_empty(ctx):
             ctx.extract("pkg-{}.tar.zst".format(ctx.attr.dist_name))
         ctx.delete("pkg-{}.tar.zst".format(ctx.attr.dist_name))
     else:
