@@ -465,11 +465,52 @@ func licenseAnd(first1, first2, second1, second2 []License) ([]License, []Licens
 	if len(first2) == 0 {
 		// [prefix AND] first1 AND second1 OR second2 =
 		// ([prefix AND] first1 AND second1) OR second2
-		return append(first1, second1...), second2
+		return mergeAnd(first1, second1), second2
 	}
 	// [prefix AND] first1 OR first2 AND second1 OR second2 =
 	// [prefix AND] first1 OR (first2 AND second1 OR second2)
-	return first1, pickLicense(append(first2, second1...), second2)
+	return first1, pickLicense(mergeAnd(first2, second1), second2)
+}
+
+// Combine two lists, skipping duplicates.
+//
+// This is basically like `append` except handles weird cases like
+// MIT AND (MIT OR Apache-2.0).
+func mergeAnd(first, second []License) []License {
+	if len(second) == 0 {
+		return first
+	}
+	if len(first) == 0 {
+		return second
+	}
+	if cap(first)-len(first) < len(second) {
+		if cap(second)-len(second) >= len(first) {
+			// Trade places to avoid needing to reallocate a slice, since we don't
+			// actually care about order.
+			first, second = second, first
+		} else {
+			n := make([]License, len(first), cap(first)+cap(second))
+			copy(n, first)
+			first = n
+		}
+	}
+	// Generally these are short lists.
+	// Except in extreem cases, the cost of allocating a map is going to be
+	// much more than the cost of using O(N) search.
+	in := func(lst []License, item License) bool {
+		for _, e := range lst {
+			if e.CanonicalId == item.CanonicalId {
+				return true
+			}
+		}
+		return false
+	}
+	for _, item := range second {
+		if !in(first, item) {
+			first = append(first, item)
+		}
+	}
+	return first
 }
 
 // Splits a license clause into component licenses.
@@ -525,7 +566,7 @@ func splitLicense(id string) ([]License, []License, error) {
 				return first, nil, fmt.Errorf("and clause %q ((%q) AND %q): %w",
 					id, head, tail[4:], err)
 			}
-			return append(first, second...), secondOr, nil
+			return mergeAnd(first, second), secondOr, nil
 		}
 	}
 	// Find the first AND or OR.
