@@ -371,6 +371,19 @@ func Test_getLicence(t *testing.T) {
 			},
 		},
 		{
+			name: "MIT AND (MIT OR Apache-2.0)",
+			kinds: []string{
+				"@rules_license//licenses/spdx:MIT",
+			},
+		},
+		{
+			name: "MIT AND Apache-2.0 AND (MIT OR Apache-2.0)",
+			kinds: []string{
+				"@rules_license//licenses/spdx:MIT",
+				"@rules_license//licenses/spdx:Apache-2.0",
+			},
+		},
+		{
 			name: "BSD-3-Clause/MIT",
 			kinds: []string{
 				"@rules_license//licenses/spdx:BSD-3-Clause",
