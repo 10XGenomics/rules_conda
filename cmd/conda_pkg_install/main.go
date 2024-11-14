@@ -8,6 +8,7 @@ import (
 	"bytes"
 	"flag"
 	"os"
+	"path"
 	"strings"
 
 	"github.com/10XGenomics/rules_conda/buildutil"
@@ -15,7 +16,7 @@ import (
 )
 
 func main() {
-	var roots, install, dest, condaRepo string
+	var roots, install, dest, prefix, condaRepo string
 	flag.StringVar(&roots, "roots", "",
 		"The root directories under which conda packages can be found.")
 	flag.StringVar(&install, "install", "",
@@ -24,6 +25,8 @@ func main() {
 		"The destination path relative to the working directory.")
 	flag.StringVar(&condaRepo, "conda", buildutil.DefaultCondaRepo,
 		"The name of the conda repository.")
+	flag.StringVar(&prefix, "prefix", "",
+		"An additional prefix to use for a noarch install")
 	flag.Parse()
 
 	if install == "" {
@@ -31,6 +34,9 @@ func main() {
 		os.Exit(1)
 	} else {
 		conda.SetCondaRepo(condaRepo)
+		if prefix != "" {
+			dest = path.Join(dest, prefix)
+		}
 		installPackage(strings.Split(roots, ","), install, dest,
 			fileList(flag.Args()))
 	}

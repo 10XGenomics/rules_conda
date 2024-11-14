@@ -150,6 +150,21 @@ def _symlink_install(ctx, sources, in_path, target_path):
         ctx.actions.symlink(output = target, target_file = src)
     return srcs
 
+def _root_path(root):
+    """Return the path component of a root.
+
+    In order to work with path remapping, we can't just pass paths around
+    as strings.
+    """
+    return root.path
+
+def _mkprefix(file):
+    prefix = file.path
+    prefix = prefix[:prefix.index(
+        "/" + file.owner.workspace_name + "/",
+    ) + len(file.owner.workspace_name) + 1]
+    return prefix
+
 def _copy_files(ctx, in_files, executable_in, in_path, target_path, executable_out, manifest):
     files = []
     for fn in in_files:
@@ -158,20 +173,18 @@ def _copy_files(ctx, in_files, executable_in, in_path, target_path, executable_o
         if _strip_root(fn, in_path) in executable_in:
             executable_out.append(f)
     if files:
-        prefix = files[0].path
-        prefix = prefix[:prefix.index(
-            "/" + ctx.label.workspace_name + "/",
-        ) + len(ctx.label.workspace_name) + 1]
-        if target_path != ".":
-            prefix = prefix + "/" + target_path
         args = ctx.actions.args()
-        args.add("-install", in_path)
-        args.add("-dest", prefix)
+
+        # Must use add_all with map_each to support path mapping.
+        args.add_all("-install", [manifest], map_each = _in_path)
+        args.add_all("-dest", files[:1], map_each = _mkprefix)
         args.add_joined("-roots", depset([
-            fn.root.path
+            fn.root
             for fn in in_files
-            if fn.root.path
-        ]), join_with = ",")
+            if fn.root
+        ]), join_with = ",", map_each = _root_path)
+        if target_path != ".":
+            args.add("-prefix", target_path)
         file_list = ctx.actions.args()
         file_list.use_param_file("@%s")
         file_list.add_all(in_files)
@@ -188,6 +201,7 @@ def _copy_files(ctx, in_files, executable_in, in_path, target_path, executable_o
             mnemonic = "CondaInstall",
             progress_message = "install {name}".format(name = ctx.attr.name),
             exec_group = "trivial",
+            execution_requirements = {"supports-path-mapping": "1"},
         )
     return files
 
