@@ -76,8 +76,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_click",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "click-8.1.7-unix_pyh707e725_0",
-        sha256 = "f0016cbab6ac4138a429e28dbcb904a90305b34b3fe41a9b89d697c90401caec",
+        dist_name = "click-8.1.7-unix_pyh707e725_1",
+        sha256 = "1cd5fc6ccdd5141378e51252a7a3810b07fd5a7e6934a5b4a7eccba66566224b",
         archive_type = "conda",
         conda_repo = name,
     )
@@ -125,8 +125,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_libgcc",
         base_urls = ["https://conda.anaconda.org/conda-forge/linux-64"],
-        dist_name = "libgcc-14.1.0-h77fa898_1",
-        sha256 = "10fa74b69266a2be7b96db881e18fa62cfa03082b65231e8d652e897c4b335a3",
+        dist_name = "libgcc-14.2.0-h77fa898_1",
+        sha256 = "53eb8a79365e58849e7b1a068d31f4f9e718dc938d6f2c03e960345739a03569",
         archive_type = "conda",
         license_file = "share/licenses/gcc-libs/RUNTIME.LIBRARY.EXCEPTION",
         exclude_deps = ["_openmp_mutex"],
@@ -136,8 +136,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_libgcc_ng",
         base_urls = ["https://conda.anaconda.org/conda-forge/linux-64"],
-        dist_name = "libgcc-ng-14.1.0-h69a702a_1",
-        sha256 = "b91f7021e14c3d5c840fbf0dc75370d6e1f7c7ff4482220940eaafb9c64613b7",
+        dist_name = "libgcc-ng-14.2.0-h69a702a_1",
+        sha256 = "3a76969c80e9af8b6e7a55090088bc41da4cffcde9e2c71b17f44d37b7cb87f7",
         exclude = [
             "lib/libgomp.so*",
             "lib/lib*san.so*",
@@ -170,8 +170,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_libstdcxx",
         base_urls = ["https://conda.anaconda.org/conda-forge/linux-64"],
-        dist_name = "libstdcxx-14.1.0-hc0a3c3a_1",
-        sha256 = "44decb3d23abacf1c6dd59f3c152a7101b7ca565b4ef8872804ceaedcc53a9cd",
+        dist_name = "libstdcxx-14.2.0-hc0a3c3a_1",
+        sha256 = "4661af0eb9bdcbb5fb33e5d0023b001ad4be828fccdcc56500059d56f9869462",
         archive_type = "conda",
         license_file = "share/licenses/libstdc++/RUNTIME.LIBRARY.EXCEPTION",
         conda_repo = name,
@@ -179,8 +179,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_libstdcxx_ng",
         base_urls = ["https://conda.anaconda.org/conda-forge/linux-64"],
-        dist_name = "libstdcxx-ng-14.1.0-h4852527_1",
-        sha256 = "a2dc44f97290740cc187bfe94ce543e6eb3c2ea8964d99f189a1d8c97b419b8c",
+        dist_name = "libstdcxx-ng-14.2.0-h4852527_1",
+        sha256 = "25bb30b827d4f6d6f0522cc0579e431695503822f144043b93c50237017fffd8",
         archive_type = "conda",
         conda_repo = name,
     )
@@ -214,8 +214,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_mypy_extensions",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "mypy_extensions-1.0.0-pyha770c72_0",
-        sha256 = "f240217476e148e825420c6bc3a0c0efb08c0718b7042fae960400c02af858a3",
+        dist_name = "mypy_extensions-1.0.0-pyha770c72_1",
+        sha256 = "1895f47b7d68581a6facde5cb13ab8c2764c2e53a76bd746f8f98910dc4e08fe",
         archive_type = "conda",
         conda_repo = name,
     )
@@ -245,32 +245,32 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_packaging",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "packaging-24.1-pyhd8ed1ab_0",
-        sha256 = "36aca948219e2c9fdd6d80728bcc657519e02f06c2703d8db3446aec67f51d81",
+        dist_name = "packaging-24.2-pyhd8ed1ab_2",
+        sha256 = "da157b19bcd398b9804c5c52fc000fcb8ab0525bdb9c70f95beaa0bb42f85af1",
         archive_type = "conda",
         conda_repo = name,
     )
     conda_package_repository(
         name = "conda_package_pathspec",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "pathspec-0.12.1-pyhd8ed1ab_0",
-        sha256 = "4e534e66bfe8b1e035d2169d0e5b185450546b17e36764272863e22e0370be4d",
+        dist_name = "pathspec-0.12.1-pyhd8ed1ab_1",
+        sha256 = "9f64009cdf5b8e529995f18e03665b03f5d07c0b17445b8badef45bde76249ee",
         archive_type = "conda",
         conda_repo = name,
     )
     conda_package_repository(
         name = "conda_package_pip",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "pip-24.2-pyh8b19718_1",
-        sha256 = "d820e5358bcb117fa6286e55d4550c60b0332443df62121df839eab2d11c890b",
+        dist_name = "pip-24.3.1-pyh8b19718_0",
+        sha256 = "499313e72e20225f84c2e9690bbaf5b952c8d7e0bf34b728278538f766b81628",
         archive_type = "conda",
         conda_repo = name,
     )
     conda_package_repository(
         name = "conda_package_platformdirs",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "platformdirs-4.3.6-pyhd8ed1ab_0",
-        sha256 = "c81bdeadc4adcda216b2c7b373f0335f5c78cc480d1d55d10f21823590d7e46f",
+        dist_name = "platformdirs-4.3.6-pyhd8ed1ab_1",
+        sha256 = "bb50f6499e8bc1d1a26f17716c97984671121608dc0c3ecd34858112bce59a27",
         archive_type = "conda",
         conda_repo = name,
     )
@@ -305,8 +305,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_setuptools",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "setuptools-75.1.0-pyhd8ed1ab_0",
-        sha256 = "6725235722095c547edd24275053c615158d6163f396550840aebd6e209e4738",
+        dist_name = "setuptools-75.6.0-pyhff2d567_1",
+        sha256 = "abb12e1dd515b13660aacb5d0fd43835bc2186cab472df25b7716cd65e095111",
         exclude = [
             "lib/python*/site-packages/setuptools/command/launcher manifest.xml",
             "lib/python*/site-packages/setuptools/script (dev).tmpl",
@@ -335,8 +335,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_tomli",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "tomli-2.0.2-pyhd8ed1ab_0",
-        sha256 = "5e742ba856168b606ac3c814d247657b1c33b8042371f1a08000bdc5075bc0cc",
+        dist_name = "tomli-2.2.1-pyhd8ed1ab_1",
+        sha256 = "18636339a79656962723077df9a56c0ac7b8a864329eb8f847ee3d38495b863e",
         conda_repo = name,
         archive_type = "conda",
     )
@@ -352,8 +352,8 @@ def conda_environment(name = "conda_env"):
     conda_package_repository(
         name = "conda_package_wheel",
         base_urls = ["https://conda.anaconda.org/conda-forge/noarch"],
-        dist_name = "wheel-0.44.0-pyhd8ed1ab_0",
-        sha256 = "d828764736babb4322b8102094de38074dedfc71f5ff405c9dfee89191c14ebc",
+        dist_name = "wheel-0.45.1-pyhd8ed1ab_1",
+        sha256 = "1b34021e815ff89a4d902d879c3bd2040bc1bd6169b32e9427497fa05c55f1ce",
         archive_type = "conda",
         conda_repo = name,
     )
